@@ -1,7 +1,7 @@
 
  
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-  import {getFirestore , collection, addDoc,  getDocs,doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+  import {getFirestore , collection, addDoc,  getDocs,doc, updateDoc, deleteDoc  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCW93XFyu1agGP08IFaD-XyWsulyDYBbto",
@@ -40,7 +40,7 @@ querySnapshot.forEach((doc) => {
 `     <div><p>${doc.data().text}</p>
 
 <button onclick=edit("${doc.id}")>edit</button>
-<button>delete</button>
+<button onclick=deletea("${doc.id}")>delete</button>
 </div> 
 `
 
@@ -65,4 +65,16 @@ window.location.reload()
 
     
 }
+
+let  deletea =  async (id) =>{
+  
+  
+  await deleteDoc(doc(db, "users", id))
+  
+  .then(()=>{
+    window.location.reload();
+  });
+  
+}
+window.deletea=deletea
 window.edit=edit
